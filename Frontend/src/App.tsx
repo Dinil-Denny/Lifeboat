@@ -1,12 +1,15 @@
-import './App.css'
+import './App.css';
+import UserHeader from './components/userComponents/UserHeader';
+import Home from './components/userComponents/Home';
 
 function App() {
 
   return (
     <>
-      <h1>Home</h1>
+      <UserHeader/>
+      <Home/>
     </>
   )
 }
 
-export default App
+export default App;
