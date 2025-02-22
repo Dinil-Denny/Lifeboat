@@ -1,18 +1,18 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
+import Seperator from "../Seperator";
 
 const HomeSearch = () => {
   return (
     <>
     <div className="flex items-center justify-center flex-col mt-2">
       <p className="text-sm text-brand-orange text-center animate-pulse">scroll down</p>
-      <img src="/down-arrow.svg" alt="scroll down" className="w-5 h-5 sm:w-14 sm:h-14 animate-bounce"/>
+      <img src="/src/assets/down-arrow.svg" alt="scroll down" className="w-5 h-5 sm:w-14 sm:h-14 animate-bounce"/>
     </div> 
     <div className="text-center mb-4">
         <p className="font-normal sm:text-xl text-sm tracking-wide">Thousands are fundraising online on Lifeboat</p>
     </div>
     {/* seperator line */}
-    <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700 w-1/2 mx-auto"></hr>
+    <Seperator/>
     {/* search input field */}
     <div className='flex justify-center w-full mt-8 mb-8'>
         <form action="" className='w-full flex justify-center'>

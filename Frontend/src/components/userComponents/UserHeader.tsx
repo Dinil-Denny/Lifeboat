@@ -61,7 +61,7 @@ const UserHeader = () => {
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <Button className="rounded bg-orange-500 py-2 px-4 text-sm text-white data-[hover]:bg-orange-600 data-[active]:bg-orange-600">
+              <Button className="text-xs sm:text-sm rounded bg-brand-orange py-2 px-4 text-white data-[hover]:bg-orange-600 data-[active]:bg-orange-600">
                 Start a fundraiser
               </Button>
               {/* Profile dropdown */}
