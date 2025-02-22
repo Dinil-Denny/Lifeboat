@@ -4,7 +4,7 @@ import Seperator from "../Seperator";
 const HomeContent = () => {
   return (
     <div>
-      <div>
+      <section>
         <div className='flex flex-col md:flex-row text-justify mx-16 my-5 md:mx-20'>
           <div className='md:w-1/2'>
               <h5 className="text-xs sm:text-sm">Are you seeking support?</h5>
@@ -41,10 +41,10 @@ const HomeContent = () => {
               </Button>
           </div>
         </div>
-      </div>
+      </section>
       {/* live datas */}
       <Seperator/>
-      <div className="flex items-center justify-center  text-brand-orange">
+      <section className="flex items-center justify-center  text-brand-orange">
         <div className="m-3 sm:m-5 text-center">
           <h5>Rs.1000000</h5>
           <p className="text-brand-darkGreen">Total funds raised</p>
@@ -61,10 +61,10 @@ const HomeContent = () => {
           <h5>100</h5>
           <p className="text-brand-darkGreen">Ongoing campaigns</p>
         </div>
-      </div>
+      </section>
       <Seperator/>
       <h5 className="text-center mt-5 mb-3">Why Choose Us?</h5>
-      <div className="w-full md:w-1/2 md:flex justify-center mx-auto">
+      <section className="w-full md:w-1/2 md:flex justify-center mx-auto">
         <div className="md:w-3/4 lg:w-1/2 flex justify-center items-center bg-brand-blue rounded m-2 p-3">
             <img src="/src/assets/money-plant.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">Starting a fundraiser on Lifeboat is absolutely free.</p>
@@ -73,8 +73,8 @@ const HomeContent = () => {
             <img src="/src/assets/phone.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">24x7 assistance from dedicated fundraiser managers throughout your fundraising journey.</p>
         </div>
-      </div>
-      <div className="w-full md:w-1/2 md:flex justify-center mx-auto">
+      </section>
+      <section className="w-full md:w-1/2 md:flex justify-center mx-auto">
         <div className="md:w-3/4 lg:w-1/2 flex justify-center items-center bg-brand-blue rounded m-2 p-3">
             <img src="/src/assets/multiple-currency.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">We accept donations in multiple currencies from anywhere in the world.</p>
@@ -83,8 +83,8 @@ const HomeContent = () => {
             <img src="/src/assets/money-transfer.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">You can withdraw your funds at any point during the course of your fundraiser.</p>
         </div>
-      </div>
-      <div className="w-full md:w-1/2 md:flex justify-center mx-auto">
+      </section>
+      <section className="w-full md:w-1/2 md:flex justify-center mx-auto">
         <div className="md:w-3/4 lg:w-1/2 flex justify-center items-center bg-brand-blue rounded m-2 p-3">
             <img src="/src/assets/update.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">Get instant updates on your fundraiser's progress on a real-time dashboard.</p>
@@ -93,7 +93,7 @@ const HomeContent = () => {
             <img src="/src/assets/multiple-transfer.svg" alt="image" className="w-10" />
             <p className="text-left mx-3">Accepts donations all cards, net banking, UPI and online wallets.</p>
         </div>
-      </div>
+      </section>
     </div>  
   )
 }

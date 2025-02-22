@@ -21,3 +21,17 @@
     background-color: var(--color-brand-darkGreen);
 }
 /* ------------------------------------------------------------------------- */
+/* different color for divider element */
+.divider::before,
+.divider::after {
+  background-color: #c5c5c5; 
+}
+
+/* ------ full screen height ------ */
+:root{
+    --navbar-height:64px;
+}
+.full-screen{
+    min-height: calc(100vh - var(--navbar-height));
+}
+/* -------------------------------- */
