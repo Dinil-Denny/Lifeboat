@@ -140,7 +140,7 @@ const UserHeader = () => {
             ))}
           </div>
         </DisclosurePanel>
-    </Disclosure>
+      </Disclosure>
     </>
   )
 }

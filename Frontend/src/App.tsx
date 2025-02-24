@@ -1,14 +1,14 @@
 import './App.css';
 import UserHeader from './components/userComponents/UserHeader';
 import Home from './screens/userScreens/Home';
-import Footer from './components/userComponents/Footer';
+import AdminLogin from './screens/adminScreens/AdminLogin';
+
 function App() {
 
   return (
     <>
-      <UserHeader/>
+      <AdminLogin/>
       {/* <Home/> */}
-      <Footer/>
     </>
   )
 }
