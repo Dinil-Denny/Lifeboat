@@ -1,17 +1,31 @@
 import './App.css';
+import { Outlet,useLocation } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 import UserHeader from './components/userComponents/UserHeader';
-import Home from './screens/userScreens/Home';
-import AdminLogin from './screens/adminScreens/AdminLogin';
-import Login from './screens/userScreens/Login';
-import Register from './screens/userScreens/Register';
+import AdminHeader from './components/adminComponents/AdminHeader';
+import Footer from './components/userComponents/Footer';
 
 function App() {
-
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
   return (
     <>
-      <UserHeader/>
-      {/* <Home/> */}
-      <Register/>
+      {isAdminPage ? <AdminHeader/> : <UserHeader/>}
+
+      <ToastContainer 
+       position="top-right"
+       autoClose={3000}
+       hideProgressBar={false}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="colored"/>
+
+      <Outlet/>
+
+      {isAdminPage ? null : <Footer/>}
     </>
   )
 }

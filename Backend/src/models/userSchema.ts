@@ -1,18 +1,6 @@
 import mongoose from 'mongoose';
+import { IUser } from '../interfaces/userInterface.js';
 
-export interface IUser extends mongoose.Document{
-    name : string;
-    email : string;
-    password : string;
-    phone ?: string;
-    role : string;
-    blocked : boolean;
-    totalAmountDonated : number;
-    donations ?: mongoose.Types.ObjectId;
-    fundraisers ?: mongoose.Types.ObjectId;
-    createdAt : Date;
-    updatedAt : Date;
-};
 
 const userSchema = new mongoose.Schema<IUser>(
     {
@@ -24,8 +12,8 @@ const userSchema = new mongoose.Schema<IUser>(
         blocked : {type: Boolean, default: false},
         totalAmountDonated : {type: Number, default:0},
         //2 more fields to add
-        //donations
-        //fundraisers
+        //donations - refering donations schema
+        //fundraisers - refering fundraisers schema
     },
     {timestamps : true} //this automatically creates createdAt and updatedAt fields
 );

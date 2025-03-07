@@ -11,7 +11,7 @@ const Register = () => {
                 </div>
                 <form action="">
                     <div className="my-3">
-                        <input type="input" className="input validator bg-gray-200" required placeholder="Enter Username" 
+                        <input type="input" name="name" className="input validator bg-gray-200" required placeholder="Enter Username" 
                             pattern="[A-Za-z][A-Za-z0-9\-]*" minLength={3} maxLength={30} title="Only letters, numbers or dash" />
                         <p className="validator-hint hidden">
                             Must be 3 to 30 characters
@@ -19,11 +19,11 @@ const Register = () => {
                         </p>
                     </div>
                     <div className="my-3">
-                        <input className="input validator bg-gray-200" type="email" required placeholder="Enter your email" />
+                        <input className="input validator bg-gray-200" name="email" type="email" required placeholder="Enter your email" />
                         <div className="validator-hint hidden">Enter valid email address</div>
                     </div>
                     <div className="my-3">
-                        <input type="password" className="input validator bg-gray-200" required placeholder="Enter Password" minLength={8} 
+                        <input type="password" name="password" className="input validator bg-gray-200" required placeholder="Enter Password" minLength={8} 
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
                         <p className="validator-hint hidden">
@@ -34,7 +34,7 @@ const Register = () => {
                         </p>
                     </div>
                     <div className="my-3">
-                        <input type="password" className="input validator bg-gray-200" required placeholder="Confirm password" minLength={8} 
+                        <input type="password" name="password" className="input validator bg-gray-200" required placeholder="Confirm password" minLength={8} 
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
                         <p className="validator-hint hidden">

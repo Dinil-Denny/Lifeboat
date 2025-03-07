@@ -11,11 +11,11 @@ const Login = () => {
                 </div>
                 <form action="">
                     <div>
-                        <input className="input validator bg-gray-200" type="email" required placeholder="Enter your email" />
+                        <input className="input validator bg-gray-200" type="email" name="email" required placeholder="Enter your email" />
                         <div className="validator-hint">Enter valid email address</div>
                     </div>
                     <div>
-                        <input type="password" className="input validator bg-gray-200" required placeholder="Password" minLength={8} 
+                        <input type="password" name="password" className="input validator bg-gray-200" required placeholder="Password" minLength={8} 
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
                         <p className="validator-hint hidden">
