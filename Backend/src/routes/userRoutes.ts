@@ -8,7 +8,7 @@ const userServices = new UserServices(userRepository);
 const userControllers = new UserControllers(userServices);
 const router = Router();
 
-router.post('/get-otp',userControllers.getOtp);
+router.post('/register',userControllers.register);
 router.post('/verify-otp',userControllers.verifyOtp);
 
 export default router;

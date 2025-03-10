@@ -8,7 +8,7 @@ interface Menu {
 };
 
 const navigation : Menu[] = [
-  { name: 'Home', href: '#', current: true },
+  { name: 'Home', href: '/', current: true },
   { name: 'Donate', href: '#', current: false },
   { name: 'About Us', href: '#', current: false },
   { name: 'Messages', href: '#', current: false }

@@ -6,10 +6,13 @@ import App from './App';
 import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+
+// user pages
 import Home from './screens/userScreens/Home';
 import Login from './screens/userScreens/Login';
 import Register from './screens/userScreens/Register';
 
+// admin pages
 import AdminLogin from './screens/adminScreens/AdminLogin';
 
 const router = createBrowserRouter(

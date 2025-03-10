@@ -12,11 +12,11 @@ export class UserControllers{
     constructor(userServices:UserServices){
         this.userServices = userServices;
         //methods may lose its context when passed as a callback in router, so bind 'this' in the constructor
-        this.getOtp = this.getOtp.bind(this);
+        this.register = this.register.bind(this);
         this.verifyOtp = this.verifyOtp.bind(this);
     };
 
-    async getOtp (req:Request,res:Response,next:NextFunction){
+    async register (req:Request,res:Response,next:NextFunction){
         const{name,email,password} = req.body;
         try{
             //user data in req.body validation

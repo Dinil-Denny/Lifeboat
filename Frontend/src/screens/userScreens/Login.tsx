@@ -41,7 +41,7 @@ const Login = () => {
                     </button>
                 </div>
                 <div className="flex justify-center mt-4">
-                    <p>New to Lifeboat ? <a href="">Register</a></p>
+                    <p>New to Lifeboat ? <a href="/register">Register</a></p>
                 </div>
             </div>
         </div>
