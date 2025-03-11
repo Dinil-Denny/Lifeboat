@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import store,{persistor} from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // user pages
 import Home from './screens/userScreens/Home';
@@ -33,7 +34,9 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <StrictMode>
-      <RouterProvider router={router}/>
+      <PersistGate loading = {null} persistor={persistor}>
+        <RouterProvider router={router}/>
+      </PersistGate>
     </StrictMode>
   </Provider> 
 )

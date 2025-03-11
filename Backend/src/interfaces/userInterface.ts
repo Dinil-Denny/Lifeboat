@@ -10,6 +10,7 @@ export interface IUser extends mongoose.Document{
     totalAmountDonated ?: number;
     donations ?: mongoose.Types.ObjectId;
     fundraisers ?: mongoose.Types.ObjectId;
+    isVerified ?: boolean;
     createdAt ?: Date;
     updatedAt ?: Date;
 };

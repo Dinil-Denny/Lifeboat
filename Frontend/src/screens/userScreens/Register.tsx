@@ -1,10 +1,12 @@
 import { UserIcon } from "@heroicons/react/24/solid";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {toast} from "react-toastify";
 import * as yup from "yup";
 import axios from "axios";
 
-const Register = () => {
+const Register : React.FC = () => {
 
   type FormFields = {
     userName: string;
@@ -40,7 +42,7 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log("Form Data:", data);
-    
+
   };
 
   return (

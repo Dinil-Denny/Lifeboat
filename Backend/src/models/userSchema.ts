@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema<IUser>(
         role : {type: String, default: 'user'},
         blocked : {type: Boolean, default: false},
         totalAmountDonated : {type: Number, default:0},
+        isVerified : {type: Boolean, default: false},
         //2 more fields to add
         //donations - refering donations schema
         //fundraisers - refering fundraisers schema
