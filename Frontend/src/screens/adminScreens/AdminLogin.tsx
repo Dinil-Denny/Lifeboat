@@ -1,4 +1,33 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+
 const AdminLogin = () => {
+
+  type FormFields = {
+    email : string;
+    password : string;
+  }
+
+  const validationSchema = yup.object().shape({
+    email : yup.string().email('Enter a valid email').required('Email is required'),
+    password : yup
+      .string()
+      .min(8, "Must be at least 8 characters")
+      .matches(/[A-Z]/, "Must contain at least one uppercase letter")
+      .matches(/[a-z]/, "Must contain at least one lowercase letter")
+      .matches(/\d/, "Must contain at least one number")
+      .required("Password is required"),
+  });
+
+  const {register,handleSubmit,formState:{errors}} = useForm<FormFields>({resolver:yupResolver(validationSchema)});
+
+  const onSubmit : SubmitHandler<FormFields> = (data) => {
+    console.log("admin data: ",data);
+    toast.success("Login successful");
+  };
+
   return (
     <>
       <div className="h-screen bg-brand-darkGreen flex justify-center items-center">
@@ -9,38 +38,32 @@ const AdminLogin = () => {
               Please enter your email and password to continue
             </p>
           </div>
-          <form action="">
-            <div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* admin email */}
+            <div className="my-3">
               <input
+                {...register("email")}
                 className="input validator bg-gray-200"
                 type="email"
-                required
                 placeholder="Enter email"
               />
-              <div className="validator-hint">Enter valid email address</div>
+              <div className="text-red-500 text-sm">{errors.email?.message}</div>
             </div>
-            <div>
+            {/* admi password */}
+            <div className="my-3">
               <input
+                {...register("password")}
                 type="password"
                 className="input validator bg-gray-200"
-                required
                 placeholder="Password"
-                minLength={8}
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
               />
-              <p className="validator-hint hidden">
-                Must be more than 8 characters, including
-                <br />
-                At least one number
-                <br />
-                At least one lowercase letter
-                <br />
-                At least one uppercase letter
+              <p className="text-red-500 text-sm">
+                {errors.password?.message}
               </p>
             </div>
             <div className="flex my-5">
-              <button className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded">
+              {/* submit button */}
+              <button type="submit" className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded">
                 Log In
               </button>
             </div>

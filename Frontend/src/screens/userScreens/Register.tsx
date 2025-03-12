@@ -8,6 +8,7 @@ import * as yup from "yup";
 import axios from "axios";
 
 const Register: React.FC = () => {
+  
   type FormFields = {
     userName: string;
     email: string;
