@@ -1,13 +1,13 @@
+import React from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import axios from "axios";
 
-const Register : React.FC = () => {
-
+const Register: React.FC = () => {
   type FormFields = {
     userName: string;
     email: string;
@@ -36,13 +36,16 @@ const Register : React.FC = () => {
       .required("Confirm password is required"),
   });
 
-  const {register,handleSubmit,formState: { errors }} = useForm<FormFields>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log("Form Data:", data);
-
   };
 
   return (
@@ -61,7 +64,9 @@ const Register : React.FC = () => {
               className="input validator bg-gray-200"
               placeholder="Enter Username"
             />
-            {errors.userName && <p className="text-red-500 text-sm">{errors.userName.message}</p>}
+            {errors.userName && (
+              <p className="text-red-500 text-sm">{errors.userName.message}</p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -72,7 +77,9 @@ const Register : React.FC = () => {
               type="email"
               placeholder="Enter your email"
             />
-            {errors.email && <p className="text-red-500  text-sm">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500  text-sm">{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password Field */}
@@ -83,7 +90,9 @@ const Register : React.FC = () => {
               className="input validator bg-gray-200"
               placeholder="Enter Password"
             />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
           </div>
 
           {/* Confirm Password Field */}
@@ -94,12 +103,19 @@ const Register : React.FC = () => {
               className="input validator bg-gray-200"
               placeholder="Confirm Password"
             />
-            {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm">
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
 
           {/* Submit Button */}
           <div className="flex mt-5">
-            <button type="submit" className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded">
+            <button
+              type="submit"
+              className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded"
+            >
               Get OTP
             </button>
           </div>
@@ -113,7 +129,11 @@ const Register : React.FC = () => {
         {/* Google Sign-in */}
         <div className="flex">
           <button className="flex items-center justify-center w-full h-10 px-6 text-indigo-100 transition-colors duration-150 bg-blue-600 rounded focus:shadow-outline hover:bg-blue-700">
-            <img src="/src/assets/google.svg" className="w-5 mr-3" alt="Google Icon" />
+            <img
+              src="/src/assets/google.svg"
+              className="w-5 mr-3"
+              alt="Google Icon"
+            />
             Sign in with Google
           </button>
         </div>

@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
-@plugin "daisyui";  
+@plugin "daisyui";
 
 /* ------------------------- custom colors ---------------------------------- */
 @theme {
-    --color-brand-orange: #FD6F2F;
-    --color-brand-blue: #9ECCFA;
-    --color-brand-darkGreen : #1F526B;
+  --color-brand-orange: #fd6f2f;
+  --color-brand-blue: #9eccfa;
+  --color-brand-darkGreen: #1f526b;
 }
 
-.bg-brand-ornage{
-    background-color: var(--color-brand-orange);
-} 
-.bg-brand-blue{
-    background-color: var(--color-brand-blue);
+.bg-brand-ornage {
+  background-color: var(--color-brand-orange);
 }
-.bg-brand-darkGreen{
-    background-color: var(--color-brand-darkGreen);
+.bg-brand-blue {
+  background-color: var(--color-brand-blue);
+}
+.bg-brand-darkGreen {
+  background-color: var(--color-brand-darkGreen);
 }
 /* ------------------------------------------------------------------------- */
 /* different color for divider element */
 .divider::before,
 .divider::after {
-  background-color: #c5c5c5; 
+  background-color: #c5c5c5;
 }
 
 /* ------ full screen height ------ */
-:root{
-    --navbar-height:64px;
+:root {
+  --navbar-height: 64px;
 }
-.full-screen{
-    min-height: calc(100vh - var(--navbar-height));
+.full-screen {
+  min-height: calc(100vh - var(--navbar-height));
 }
 /* -------------------------------- */

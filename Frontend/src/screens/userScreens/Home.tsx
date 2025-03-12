@@ -5,12 +5,11 @@ import HomeContent from "../../components/userComponents/HomeContent";
 const Home = () => {
   return (
     <>
-        <HeroSection/>
-        <HomeSearch/>
-        <HomeContent/>
-        
+      <HeroSection />
+      <HomeSearch />
+      <HomeContent />
     </>
-  )
-}
+  );
+};
 
 export default Home;

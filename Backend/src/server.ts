@@ -11,17 +11,17 @@ const app = express();
 
 connectDB();
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 //error middleware
 app.use(errorMiddleware);
 
-app.use('/',userRoutes);
+app.use('/', userRoutes);
 
-app.get('/',(req,res)=>{
-    res.send('home');
-})
+// app.get('/', (req, res) => {
+//   res.send('home');
+// });
 
-const port :number|string = process.env.PORT || 5000;
+const port: number | string = process.env.PORT || 5000;
 
-app.listen(port,()=>console.log(`server running at ${port}`));
+app.listen(port, () => console.log(`server running at ${port}`));
