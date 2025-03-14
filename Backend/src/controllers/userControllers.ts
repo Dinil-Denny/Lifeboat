@@ -17,13 +17,17 @@ export class UserControllers {
   }
 
   async register(req: Request, res: Response, next: NextFunction) {
-    const { name, email, password } = req.body;
+    console.log('reg controller');
+    const { userName, email, password } = req.body;
+    console.log('req.body: ', req.body);
     try {
       //user data in req.body validation
+      console.log('1');
       await registerValidationSchema.validate(req.body, { abortEarly: false });
-
-      let userDetails: IcreateUserDTO = { name, email, password };
+      console.log('2');
+      let userDetails: IcreateUserDTO = { userName, email, password };
       await this.userServices.createUser(userDetails);
+      console.log('lst');
       res
         .status(HttpStatus.CREATED)
         .json({ message: 'user registered successfully' });

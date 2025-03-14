@@ -1,7 +1,7 @@
 //DTO - data transfer object
 
 export interface IcreateUserDTO {
-  name: string;
+  userName: string;
   email: string;
   password: string;
 }

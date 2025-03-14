@@ -5,16 +5,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import axios from "axios";
+import api from "../../axios";
 
 const Register: React.FC = () => {
-  
   type FormFields = {
     userName: string;
     email: string;
     password: string;
     confirmPassword: string;
   };
+
+  const navigate = useNavigate();
 
   const validationSchema = yup.object().shape({
     userName: yup
@@ -45,8 +46,16 @@ const Register: React.FC = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      console.log(data);
+      const res = await api.post(`/register`, data);
+      console.log("res: ", res);
+      navigate('/verify-otp')
+      // toast.success(res.data.message);
+    } catch (error) {
+      console.log("Error!:", error);
+    }
   };
 
   return (
@@ -61,8 +70,8 @@ const Register: React.FC = () => {
           <div className="my-3">
             <input
               {...register("userName")}
-              type="text"
               className="input validator bg-gray-200"
+              type="text"
               placeholder="Enter Username"
             />
             {errors.userName && (

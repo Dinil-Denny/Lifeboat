@@ -2,17 +2,23 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+import api from "@/axios";
+import { useState } from "react";
 
 const AdminLogin = () => {
+  const [loading, setLoading] = useState(false);
 
   type FormFields = {
-    email : string;
-    password : string;
-  }
+    email: string;
+    password: string;
+  };
 
   const validationSchema = yup.object().shape({
-    email : yup.string().email('Enter a valid email').required('Email is required'),
-    password : yup
+    email: yup
+      .string()
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password: yup
       .string()
       .min(8, "Must be at least 8 characters")
       .matches(/[A-Z]/, "Must contain at least one uppercase letter")
@@ -21,10 +27,15 @@ const AdminLogin = () => {
       .required("Password is required"),
   });
 
-  const {register,handleSubmit,formState:{errors}} = useForm<FormFields>({resolver:yupResolver(validationSchema)});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>({ resolver: yupResolver(validationSchema) });
 
-  const onSubmit : SubmitHandler<FormFields> = (data) => {
-    console.log("admin data: ",data);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    console.log("admin data: ", data);
+    //const response = await api.post("/admin/login", data);
     toast.success("Login successful");
   };
 
@@ -47,7 +58,9 @@ const AdminLogin = () => {
                 type="email"
                 placeholder="Enter email"
               />
-              <div className="text-red-500 text-sm">{errors.email?.message}</div>
+              <div className="text-red-500 text-sm">
+                {errors.email?.message}
+              </div>
             </div>
             {/* admi password */}
             <div className="my-3">
@@ -57,13 +70,14 @@ const AdminLogin = () => {
                 className="input validator bg-gray-200"
                 placeholder="Password"
               />
-              <p className="text-red-500 text-sm">
-                {errors.password?.message}
-              </p>
+              <p className="text-red-500 text-sm">{errors.password?.message}</p>
             </div>
             <div className="flex my-5">
               {/* submit button */}
-              <button type="submit" className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded">
+              <button
+                type="submit"
+                className="bg-brand-darkGreen mx-auto text-white h-10 w-full rounded"
+              >
                 Log In
               </button>
             </div>

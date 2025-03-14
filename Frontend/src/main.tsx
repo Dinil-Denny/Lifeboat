@@ -17,6 +17,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import Home from "./screens/userScreens/Home";
 import Login from "./screens/userScreens/Login";
 import Register from "./screens/userScreens/Register";
+import VerifyOTP from "./screens/userScreens/VerifyOTP";
+import ResetPassword from "./screens/userScreens/ResetPassword";
+import ResetPasswordOTP from "./screens/userScreens/ResetPasswordOTP";
 
 // admin pages
 import AdminLogin from "./screens/adminScreens/AdminLogin";
@@ -29,6 +32,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/verify-otp" element={<VerifyOTP/>}/>
 
       {/* ------admin routes------ */}
       <Route path="/admin/login" element={<AdminLogin />} />

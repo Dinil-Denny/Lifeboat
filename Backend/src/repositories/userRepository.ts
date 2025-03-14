@@ -6,7 +6,9 @@ export class UserRepository {
   //creating a new user in db Users collection
   async createUser(user: Partial<IUser>): Promise<IUser | null> {
     try {
+      console.log('5');
       const newUser = new Users(user);
+      console.log('6');
       return await newUser.save();
     } catch (error) {
       console.log('Error while creating user: ', error);

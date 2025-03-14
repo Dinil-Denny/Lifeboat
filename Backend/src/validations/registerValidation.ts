@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 //yup schema for user registration validation
 export const registerValidationSchema = yup.object().shape({
-  name: yup
+  userName: yup
     .string()
     .matches(/^[A-Za-z][A-Za-z0-9\-]*$/, 'Only letters, numbers, or dash')
     .min(3, 'minimum 3 characters required')

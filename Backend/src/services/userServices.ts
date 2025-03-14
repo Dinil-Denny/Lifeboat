@@ -11,7 +11,8 @@ export class UserServices {
   }
 
   async createUser(userDetails: IcreateUserDTO): Promise<IUser | null> {
-    const { name, email, password } = userDetails;
+    const { userName, email, password } = userDetails;
+    console.log('3');
     try {
       let userExists = await this.userRepository.findByEmail(email);
       if (userExists) {
@@ -21,7 +22,8 @@ export class UserServices {
       console.log('otp: ', otp);
 
       //converting the user details into a single object of type IUser
-      let userDetails: Partial<IUser> = { name, email, password };
+      let userDetails: Partial<IUser> = { userName, email, password };
+      console.log('4');
       return await this.userRepository.createUser(userDetails);
     } catch (error) {
       if (error instanceof Error) {
