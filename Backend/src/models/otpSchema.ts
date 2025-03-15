@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { Users } from './userSchema.js';
 import { IOtp } from '../interfaces/otpInterface.js';
 import bcrypt from 'bcryptjs';
 

@@ -1,14 +1,14 @@
 //repositories control the CRUD operations or database access logic
 import { Users } from '../models/userSchema.js'; //user schema
+import { OTP } from '../models/otpSchema.js';
 import { IUser } from '../interfaces/userInterface.js'; //user interface
+import { IOtp } from '../interfaces/otpInterface.js';
 
 export class UserRepository {
   //creating a new user in db Users collection
   async createUser(user: Partial<IUser>): Promise<IUser | null> {
     try {
-      console.log('5');
       const newUser = new Users(user);
-      console.log('6');
       return await newUser.save();
     } catch (error) {
       console.log('Error while creating user: ', error);
@@ -38,6 +38,46 @@ export class UserRepository {
         throw error;
       } else {
         throw new Error('Error while fetching user using id');
+      }
+    }
+  }
+  //saving otp
+  async createOtp(data:Partial<IOtp>) : Promise<IOtp|null> {
+    try {
+      const newOtp = new OTP(data);
+      return newOtp.save();
+    } catch (error) {
+      if(error instanceof Error){
+        console.log("Error while saving otp:",error.message);
+        throw error.message;
+      }
+      else
+        throw new Error("Error while saving otp");
+    }
+  }
+  //checking if otp for a person exist
+  async checkOtp(email:string) : Promise<boolean | null> {
+    try {
+      return await OTP.findOne({email:email});
+    } catch (error) {
+      if(error instanceof Error){
+        console.log("Error while getting otp details:",error.message);
+        throw error.message;
+      }else{
+        throw new Error("Error while checking otp");
+      }
+    }
+  }
+  //deleting otp document
+  async deleteOtp(email:string) : Promise<void> {
+    try {
+      await OTP.deleteOne({email:email});
+    } catch (error) {
+      if(error instanceof Error){
+        console.log("Error while deleting otp",error.message);
+        throw error.message;
+      }else{
+        throw new Error("Error while deleting otp");
       }
     }
   }

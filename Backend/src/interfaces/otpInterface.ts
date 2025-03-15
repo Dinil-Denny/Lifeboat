@@ -6,4 +6,4 @@ export interface IOtp extends mongoose.Document {
   createdAt?: Date;
   updatedAt?: Date;
   expiresAt?: Date;
-}
+};

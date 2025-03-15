@@ -4,6 +4,9 @@ import { generateOtp } from '../utils/generateOTP.js';
 import { IcreateUserDTO } from '../interfaces/DTOInterfaces/CreateUserInterface.js';
 import { ApiError } from '../middlewares/errorMiddleware.js';
 import { HttpStatus } from '../utils/responseCodes.js';
+import sendEmail from '../utils/sendEmail.js';
+import { IOtp } from '../interfaces/otpInterface.js';
+import { ObjectId } from 'mongoose';
 
 export class UserServices {
   private userRepository: UserRepository;
@@ -22,12 +25,30 @@ export class UserServices {
         throw new ApiError(HttpStatus.BAD_REQUEST,'Email already registered');
       }
       let otp: string = generateOtp();
-      console.log('otp: ', otp);
-
+      console.log('otp:',otp);
       //converting the user details into a single object of type IUser
       let userDetails: Partial<IUser> = { userName, email, password };
       console.log('4');
-      return await this.userRepository.createUser(userDetails);
+      const user = await this.userRepository.createUser(userDetails);
+      console.log(user);
+      if(!user){
+        throw new ApiError(HttpStatus.INTERNAL_SERVER_ERROR,"User creation failed");
+      }
+      //checking if already otp exist for the user 
+      let otpExists = await this.userRepository.checkOtp(user.email);
+      if(otpExists){
+        await this.userRepository.deleteOtp(user.email);
+      }
+
+      let otpDetails: Partial<IOtp> = {
+        email:user.email,
+        otp:otp,
+        expiresAt:new Date(Date.now()+1*60*1000)
+      };
+      const newOtp = await this.userRepository.createOtp(otpDetails);
+      console.log("newOpt:",newOtp);
+      
+      return user;
     } catch (error:any) {
       if (error instanceof ApiError) {
         console.log('Error while creating user: ', error.message);
