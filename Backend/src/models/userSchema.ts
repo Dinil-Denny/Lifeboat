@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { IUser } from '../interfaces/userInterface.js';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -17,5 +18,13 @@ const userSchema = new mongoose.Schema<IUser>(
   },
   { timestamps: true }, //this automatically creates createdAt and updatedAt fields
 );
+
+//hashing password before saving
+userSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
+});
 
 export const Users = mongoose.model<IUser>('Users', userSchema);

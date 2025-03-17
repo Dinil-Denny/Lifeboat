@@ -51,9 +51,9 @@ const Register: React.FC = () => {
       console.log(data);
       const res = await api.post(`/register`, data);
       console.log("res: ", res);
-      navigate('/verify-otp')
+      navigate("/verify-otp");
       toast.success("OTP send");
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error!:", error);
       toast.error(error.response.data.message);
     }
