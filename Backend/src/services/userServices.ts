@@ -4,10 +4,10 @@ import { generateOtp } from '../utils/generateOTP.js';
 import { IcreateUserDTO } from '../interfaces/DTOInterfaces/CreateUserInterface.js';
 import { ApiError } from '../middlewares/errorMiddleware.js';
 import { HttpStatus } from '../utils/responseCodes.js';
-import sendEmail from '../utils/sendEmail.js';
 import { IOtp } from '../interfaces/otpInterface.js';
 import { ObjectId } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import sendOTPEmail from '../utils/sendEmail.js';
 
 export class UserServices {
   private userRepository: UserRepository;
@@ -51,6 +51,7 @@ export class UserServices {
       };
       const newOtp = await this.userRepository.createOtp(otpDetails);
       console.log('newOpt:', newOtp);
+      await sendOTPEmail(user.email, otp);
 
       return user;
     } catch (error: any) {
