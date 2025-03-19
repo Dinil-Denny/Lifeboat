@@ -49,10 +49,13 @@ const Register: React.FC = () => {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
       console.log(data);
-      const res = await api.post(`/register`, data);
-      console.log("res: ", res);
       navigate("/verify-otp");
       toast.success("OTP send");
+      const res = await api.post(`/register`, data);
+      console.log("res: ", res);
+      if (res.status === 201) {
+        localStorage.setItem("userEmail", data.email);
+      }
     } catch (error: any) {
       console.log("Error!:", error);
       toast.error(error.response.data.message);

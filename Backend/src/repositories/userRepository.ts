@@ -3,6 +3,7 @@ import { Users } from '../models/userSchema.js'; //user schema
 import { OTP } from '../models/otpSchema.js';
 import { IUser } from '../interfaces/userInterface.js'; //user interface
 import { IOtp } from '../interfaces/otpInterface.js';
+import { ObjectId } from 'mongoose';
 
 export class UserRepository {
   //creating a new user in db Users collection
@@ -13,6 +14,14 @@ export class UserRepository {
     } catch (error) {
       console.log('Error while creating user: ', error);
       throw new Error(`Failed to create new user`);
+    }
+  }
+  //updating user verified
+  async updateUserVerified(userId : ObjectId) : Promise<void> {
+    try {
+      await Users.findByIdAndUpdate(userId,{isVerified:true});
+    } catch (error) {
+      
     }
   }
   //checking if an email is already registered with a user
@@ -56,7 +65,7 @@ export class UserRepository {
     }
   }
   //checking if otp for a person exist
-  async checkOtp(email:string) : Promise<boolean | null> {
+  async checkOtp(email:string) : Promise<IOtp | null> {
     try {
       return await OTP.findOne({email:email});
     } catch (error) {

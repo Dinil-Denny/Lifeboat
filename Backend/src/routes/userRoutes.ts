@@ -10,5 +10,6 @@ const router = Router();
 
 router.post('/register', userControllers.register);
 router.post('/verify-otp', userControllers.verifyOtp);
+router.post('/resend-otp', userControllers.resendOtp);
 
 export default router;

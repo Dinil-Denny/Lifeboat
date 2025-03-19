@@ -17,7 +17,7 @@ const sendOTPEmail = async(email:string,otp:string) => {
         from:process.env.AUTH_MAIL,
         to : email,
         subject : "Verify your OTP",
-        html : `<p>Enter <strong>${otp}</strong> to verify your account(OTP expires in 1 mins)</p>`
+        html : `<p>Enter <strong>${otp}</strong> to verify your account(OTP expires in 5 mins)</p>`
     };
     
     await transporter.sendMail(mailOptions);

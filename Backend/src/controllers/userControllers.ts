@@ -5,6 +5,7 @@ import { HttpStatus } from '../utils/responseCodes.js';
 import { ApiError } from '../middlewares/errorMiddleware.js';
 import { IcreateUserDTO } from '../interfaces/DTOInterfaces/CreateUserInterface.js';
 import { registerValidationSchema } from '../validations/registerValidation.js';
+import { otpValidationSchema } from '../validations/otpValidation.js';
 
 export class UserControllers {
   private userServices: UserServices;
@@ -14,8 +15,9 @@ export class UserControllers {
     //methods may lose its context when passed as a callback in router, so bind 'this' in the constructor
     this.register = this.register.bind(this);
     this.verifyOtp = this.verifyOtp.bind(this);
+    this.resendOtp = this.resendOtp.bind(this);
   }
-
+//user registration
   async register(req: Request, res: Response, next: NextFunction) {
     console.log('reg controller');
     const { userName, email, password } = req.body;
@@ -48,11 +50,26 @@ export class UserControllers {
       next(error);
     }
   }
-
+//otp verification
   async verifyOtp(req: Request, res: Response, next: NextFunction) {
+    const {otp,email} = req.body;
     try {
-      res.status(HttpStatus.SUCCESS).json({ message: 'success' });
+      console.log("otp verification req.body: ",req.body);
+      await otpValidationSchema.validate(req.body,{abortEarly:false});
+      await this.userServices.verifyOtp(otp,email);
+      res.status(HttpStatus.SUCCESS).json({ message: 'OTP verified' });
     } catch (error) {
+      next(error);
+    }
+  }
+//resend otp
+  async resendOtp(req:Request, res:Response, next:NextFunction){
+    try{
+      console.log('req.body:',req.body);
+      const {email} = req.body;
+      await this.userServices.resendOtp(email);
+      res.status(HttpStatus.SUCCESS).json({message:"OTP resend successfully"});
+    }catch(error){
       next(error);
     }
   }
